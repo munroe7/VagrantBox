@@ -75,56 +75,6 @@ firewall:
 cron:
     install: '1'
     jobs: {  }
-nginx:
-    install: '0'
-    settings:
-        default_vhost: 1
-        proxy_buffer_size: 128k
-        proxy_buffers: '4 256k'
-    upstreams: {  }
-    vhosts:
-        nxv_3j3wv0zxean2:
-            server_name: awesome.dev
-            server_aliases:
-                - www.awesome.dev
-            www_root: /var/www
-            listen_port: '80'
-            index_files:
-                - index.html
-                - index.htm
-                - index.php
-            client_max_body_size: 1m
-            ssl: '0'
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_port: '443'
-            rewrite_to_https: '1'
-            spdy: '1'
-            locations:
-                nxvl_6blma3vforh7:
-                    location: /
-                    autoindex: off
-                    try_files:
-                        - $uri
-                        - $uri/
-                        - /index.php$is_args$args
-                    fastcgi: ''
-                    fastcgi_index: ''
-                    fastcgi_split_path: ''
-                nxvl_hclasnbra6om:
-                    location: '~ \.php$'
-                    autoindex: off
-                    try_files:
-                        - $uri
-                        - $uri/
-                        - /index.php$is_args$args
-                    fastcgi: '127.0.0.1:9000'
-                    fastcgi_index: index.php
-                    fastcgi_split_path: '^(.+\.php)(/.*)$'
-                    fast_cgi_params_extra:
-                        - 'SCRIPT_FILENAME $request_filename'
-                        - 'APP_ENV dev'
-    proxies: {  }
 apache:
     install: '1'
     settings:
@@ -143,7 +93,7 @@ apache:
             serveraliases:
                 - www.shawdash.dev
             docroot: /var/www/html/ShawmutDashboard2/web
-            port: '80'
+            port: '443'
             setenv:
                 - 'APP_ENV dev'
             custom_fragment: ''
